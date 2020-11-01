@@ -1,7 +1,10 @@
-from openerp import api, fields, models
+# -*- coding: utf-8 -*-
+
+from odoo import models, fields, api
+
 
 class message_of_the_day(models.Model):
-    _name = "oepetstore.message_of_the_day"
+    _name = "petstore.message_of_the_day"
 
     @api.model
     def my_method(self):
