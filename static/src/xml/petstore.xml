@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <template id="web_assets_backend_ext" inherit_id="web.assets_backend">
-        <xpath expr="." position="inside">
-            <script type="text/javascript" src="/petstore/static/src/js/petstore.js"/>
-        </xpath>
-    </template>
-</odoo>
+
+<templates>
+    <div t-name="HomePageTemplate" t-attf-style="background-color: {{c}}; color: red;">
+        <div>This is a simple <t t-esc="a"/> template</div>
+    </div>
+
+    <div t-name="GreetingTemplate">
+        <div>Hello <t t-esc="widget.name"/>!</div>
+    </div>
+</templates>

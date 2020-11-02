@@ -74,6 +74,6 @@
       </record>
 
       <menuitem id="pet_toys_action_menu" name="Pet Toys" parent="petstore_menu"
-          action="pet_toys_action"/>
+                action="pet_toys_action"/>
   </data>
 </odoo>
