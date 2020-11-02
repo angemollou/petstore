@@ -1,0 +1,9 @@
+.o_product_button {
+  border: 3px black solid;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  font-size: medium;
+  font-weight: bold;
+  width: max-content;
+}

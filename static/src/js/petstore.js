@@ -1,42 +1,58 @@
 odoo.define("petstore.petstore", function (require) {
   "use strict";
 
-  var Class = require('web.Class');
-  var Widget = require('web.Widget');
-  var core = require('web.core');
-  var utils = require('web.utils');
+  var Class = require("web.Class");
+  var Widget = require("web.Widget");
+  var core = require("web.core");
+  var utils = require("web.utils");
+  var qweb = core.qweb;
 
-  var _t = core._t;
-  var _lt = core._lt;
+  var HomePage = Widget.extend({
+    className: "o_petstore_homepage",
+    events: {
+      mouseover: function (e) {
+        var pos = this.$("#pos");
 
-  var homePage = Widget.extend({
-    className: "oe_petstore_homepage",
-    init: function(parent) {
-      this._super(parent);
-      console.log('Hello from the init');
-      alert('Hello from the init');
+        pos[0].style = `position:absolute; top:${e.clientY}px; left:${e.clientX}px; color:black;`;
+        pos[0].innerText = `(X: ${e.clientX}, Y: ${e.clientY})`;
+
+        if (pos[0].hidden) pos.show();
+      },
+      mouseout: function () {
+        this.$("#pos").hide();
+      },
     },
     start: function () {
-      console.log("pet store home page loaded");
-      alert("pet store home page loaded");
-
-      this.$el.append("<div>Hello dear Odoo!</div>");
-
-      var greeting = new GreetingsWidget(this);
-      return greeting.appendTo(this.$el);
-    },
-  });
-
-  var GreetingsWidget = Widget.extend({
-    className: "oe_petstore_greetings",
-    start: function () {
-      this.$el.append(
-        "<div>We are so happy to see you again in this menu!</div>"
+      var products = new ProductsWidget(
+        this,
+        ["cpu", "mouse", "keyboard", "graphic card", "screen"],
+        "green"
       );
+
+      var pos = '<span id="pos" hidden=""></span>';
+      this.$el.append(pos);
+
+      return products.appendTo(this.$el);
     },
   });
 
-  core.action_registry.add('petstore.homepage', homePage);
-  core.action_registry.add("instance.petstore.HomePage", () => {});
+  var ProductsWidget = Widget.extend({
+    template: "ProductsWidget",
+    className: "o_petstore_product",
+    button_clicked: function (event) {
+      alert(event.target.innerText + " clicked");
+    },
+    events: {
+      "click .o_product_button": "button_clicked",
+    },
+    init: function (parent, products = [], color = "black") {
+      this._super(parent);
 
+      this.name = name;
+      this.products = products;
+      this.color = color;
+    },
+  });
+
+  core.action_registry.add("petstore.homepage", HomePage);
 });
