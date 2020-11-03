@@ -5,7 +5,9 @@
         <t t-if="widget.products.length !== 0">
             <ul>
                 <t t-foreach="widget.products" t-as="p">
-                    <li class="o_product_button" t-attf-style="background-color: {{widget.color}};"><t t-esc="p"/></li>
+                    <li class="o_product_button" t-attf-style="background-color: {{widget.color}};">
+                        <t t-esc="p" />
+                    </li>
                 </t>
             </ul>
         </t>
